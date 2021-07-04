@@ -43,9 +43,9 @@ def _list():
         question_list = question_list \
             .join(User) \
             .outerjoin(sub_query, sub_query.c.question_id == Question.id) \
-            .filter(Question.subject.ilike(search) |  # 질문제목
-                    Question.content.ilike(search) |  # 질문내용
-                    User.username.ilike(search) |  # 질문작성자
+            .filter(Question.subject.ilike(search) |  # 제목
+                    Question.content.ilike(search) |  # 내용
+                    User.username.ilike(search) |  # 작성자
                     sub_query.c.content.ilike(search) |  # 답변내용
                     sub_query.c.username.ilike(search)  # 답변작성자
                     ) \

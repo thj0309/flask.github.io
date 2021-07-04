@@ -48,7 +48,7 @@
         {% endfor %}
         {% else %}
         <tr>
-            <td colspan="3">질문이 없습니다.</td>
+            <td colspan="3">없습니다.</td>
         </tr>
         {% endif %}
         </tbody>
@@ -94,7 +94,7 @@
         {% endif %}
     </ul>
     <!-- 페이징처리 끝 -->
-    <a href="{{ url_for('question.create') }}" class="btn btn-primary">질문 등록하기</a>
+    <a href="{{ url_for('question.create') }}" class="btn btn-primary">등록하기</a>
 </div>
 <form id="searchForm" method="get" action="{{ url_for('question._list') }}">
     <input type="hidden" id="kw" name="kw" value="{{ kw or '' }}">
