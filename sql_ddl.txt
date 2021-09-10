@@ -1,0 +1,91 @@
+-- pmds ddl
+
+-- pmds.alembic_version definition
+CREATE TABLE `alembic_version` (
+  `version_num` varchar(32) NOT NULL,
+  PRIMARY KEY (`version_num`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+-- pmds.`user` definition
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(150) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `email` varchar(120) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_user_email` (`email`),
+  UNIQUE KEY `uq_user_username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+-- pmds.question definition
+CREATE TABLE `question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subject` varchar(200) NOT NULL,
+  `content` text NOT NULL,
+  `create_date` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `modify_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_question_user_id_user` (`user_id`),
+  CONSTRAINT `fk_question_user_id_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+
+-- pmds.question_voter definition
+CREATE TABLE `question_voter` (
+  `user_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`question_id`),
+  KEY `fk_question_voter_question_id_question` (`question_id`),
+  CONSTRAINT `fk_question_voter_question_id_question` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_question_voter_user_id_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- pmds.answer definition
+CREATE TABLE `answer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question_id` int(11) DEFAULT NULL,
+  `content` text NOT NULL,
+  `create_date` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `modify_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_answer_question_id_question` (`question_id`),
+  KEY `fk_answer_user_id_user` (`user_id`),
+  CONSTRAINT `fk_answer_question_id_question` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_answer_user_id_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+
+-- pmds.answer_voter definition
+CREATE TABLE `answer_voter` (
+  `user_id` int(11) NOT NULL,
+  `answer_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`answer_id`),
+  KEY `fk_answer_voter_answer_id_answer` (`answer_id`),
+  CONSTRAINT `fk_answer_voter_answer_id_answer` FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_answer_voter_user_id_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- pmds.comment definition
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `create_date` datetime NOT NULL,
+  `modify_date` datetime DEFAULT NULL,
+  `question_id` int(11) DEFAULT NULL,
+  `answer_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_comment_answer_id_answer` (`answer_id`),
+  KEY `fk_comment_question_id_question` (`question_id`),
+  KEY `fk_comment_user_id_user` (`user_id`),
+  CONSTRAINT `fk_comment_answer_id_answer` FOREIGN KEY (`answer_id`) REFERENCES `answer` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_comment_question_id_question` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_comment_user_id_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
