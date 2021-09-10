@@ -19,3 +19,12 @@ docker-compose.yml 파일 추가
 docker compose up -d
 docker exec -it {name} bash
 mysql -uroot -p
+
+
+
+# git
+git pull
+
+git add .
+git commit -m "ddl added"
+git push origin main
