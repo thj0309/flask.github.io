@@ -11,4 +11,5 @@ def hello_pybo():
 
 @bp.route('/')
 def index():
-    return redirect(url_for('question._list'))
+    #return redirect(url_for('question._list')) #원래버전
+    return redirect(url_for('auth.login'))

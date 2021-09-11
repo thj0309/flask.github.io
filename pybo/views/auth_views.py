@@ -11,6 +11,8 @@ from ..models import User
 import logging
 import sys
 
+from datetime import datetime
+
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
@@ -22,7 +24,10 @@ def signup():
         if not user:
             user = User(username=form.username.data,
                         password=generate_password_hash(form.password1.data),
-                        email=form.email.data)
+                        email=form.email.data,
+                        create_date= datetime.now(),  # 수정일시 저장
+                        modify_date= datetime.now()
+                        )
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('main.index'))
@@ -34,8 +39,6 @@ def signup():
 @bp.route('/profile/', methods=('GET', 'POST'))
 def profile():
     form = UserProfileForm()
-    logger = logging.getLogger()
-    logger.setLevel(logging.INFO)
 
     if request.method == 'POST':  
         user = User.query.filter_by(username=g.user.username).first()
@@ -45,6 +48,7 @@ def profile():
         else:
             user.password = generate_password_hash(form.password1.data)
             user.email = form.email.data
+            user.modify_date= datetime.now()
             db.session.commit()
             return redirect(url_for('main.index'))
         flash(error)
@@ -68,7 +72,8 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user.id
-            return redirect(url_for('main.index'))
+            #return redirect(url_for('main.index'))
+            return redirect(url_for('question._list'))
         flash(error)
     return render_template('auth/login.html', form=form)
 
