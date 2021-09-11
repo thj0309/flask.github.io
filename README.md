@@ -32,4 +32,4 @@ git push origin main
 
 
 # Notion 정보
-https://www.notion.so/thj0309/Python-s-backend-Flask-d386bd4a932c4bfda69d94712093090a
+https://thj0309.notion.site/Python-s-backend-Flask-d386bd4a932c4bfda69d94712093090a
