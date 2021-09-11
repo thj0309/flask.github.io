@@ -1,0 +1,25 @@
+
+
+1. 가상환경 생성하기
+conda create -n pdms
+
+2. flask 설치
+pip install flask
+
+3. Flask ORM 설치하기
+pip install Flask_Migrate
+
+4. Flask Form Moduel 설치하기
+pip install Flask-WTF
+
+5. email-validator 설치하기
+pip install email_validator
+
+6. flask Markdown 설치하기
+pip install Flask-Markdown
+
+7. MySQL w/t Python
+pip install PyMySQL
+pip install mysqlclient
+pip install sqlalchemy
+pip install mysql-connector-python
