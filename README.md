@@ -1,6 +1,13 @@
 # Flask 기반 Python Back-end Framework
 2021 PMDS+
 
+# 0. Framework w/t PJT
+자바 기반의 스프링 프레임워크처럼 파이썬 또한 웹 프레임워크가 있다. <br/>
+파이썬 웹 프레임워크에는 장고, 플라스크, FastAPI 등 많은 프레임워크가 있다.<br/>
+그 중, 타 프레임워크에 보다 매우 가볍지만 기능이 매우 충실해 많은 현장에서 쓰이는 프레임워크인 플라스크를 선정하여 학습을 했다.<br/>
+플라스크르 활용하여 회원가입 기능을 포함한 블로그 기능을 만들었다.<br/>
+
+
 # 1. Flask 실행하기
 ## MacOSX
 export FLASK_APP=pybo/__init__.py <br/>
