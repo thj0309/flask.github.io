@@ -1,1 +1,3 @@
 db_volumes/
+__pycache__/
+pybo/__pycache__/
