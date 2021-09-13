@@ -3,6 +3,9 @@
 1. 가상환경 생성하기
 conda create -n pdms
 
+
+conda activate pmds 로 가상환경 접속 후, 아래사항을 이행하시면 됩니다. <br/>
+
 2. flask 설치
 pip install flask
 
