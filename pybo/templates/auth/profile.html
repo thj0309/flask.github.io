@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+
 <div class="container my-3">
     <form method="post" class="post-form">
         {{ form.csrf_token }}
         {% include "form_errors.html" %}
+        <div class="form-group">
+            <label for="id">회원번호</label>
+            <input type="text" class="form-control" name="id" id="id"
+                   value="{{ g.user.id }}" disabled="true">
+        </div>
         <div class="form-group">
             <label for="username">사용자 이름</label>
             <input type="text" class="form-control" name="username" id="username"
@@ -25,16 +31,17 @@
                    value="{{ form.email.data|default('', true) }}">
         </div>
         <div class="form-group">
-            <label for="username"> 회원 가입일시 </label>
+            <label for="create_date"> 회원 가입일시 </label>
             <input type="text" class="form-control" name="create_date" id="create_date"
                    value="{{ g.user.create_date }}" disabled="true">
         </div>
         <div class="form-group">
-            <label for="username"> 회원정보 수정일시 </label>
+            <label for="modify_date"> 회원정보 수정일시 </label>
             <input type="text" class="form-control" name="modify_date" id="modify_date"
                    value="{{ g.user.modify_date }}" disabled="true">
         </div>
         <button type="submit" class="btn btn-primary">수정하기</button>
+        <button type="" class="btn btn-primary">이동하기</button>
     </form>
 </div>
 {% endblock %}

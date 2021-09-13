@@ -12,6 +12,9 @@
                 <a class="nav-link" href="{{ url_for('auth.profile') }}">회원정보</a>
             </li>
             <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('question._list') }}">게시판</a>
+            </li>
+            <li class="nav-item ">
                 <a class="nav-link" href="{{ url_for('auth.logout') }}">{{ g.user.username }} (로그아웃)</a>
             </li>
         </ul>

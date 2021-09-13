@@ -1,6 +1,7 @@
 import functools
 
 from flask import Blueprint, url_for, render_template, flash, request, session, g
+from sqlalchemy.sql.expression import null
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
@@ -46,11 +47,15 @@ def profile():
         if not user:
             error = "존재하지 않는 사용자입니다!!" + form.username.data
         else:
-            user.password = generate_password_hash(form.password1.data)
-            user.email = form.email.data
+            if(form.password1.data is not None):
+                user.password = generate_password_hash(form.password1.data)
+
+            if(form.email.data is not None):
+                user.email = form.email.data
+
             user.modify_date= datetime.now()
             db.session.commit()
-            return redirect(url_for('main.index'))
+            return redirect(url_for('question._list'))
         flash(error)
     return render_template('auth/profile.html', form=form)
 
