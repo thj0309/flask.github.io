@@ -1,4 +1,4 @@
--- pmds ddl
+ -- pmds ddl
 
 create database pmds;
 
