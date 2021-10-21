@@ -24,6 +24,10 @@ export APP_CONFIG_FILE=..\config\production.py
 
 ## Windows
 ```bash
+win_batch_dev.bat 이거나 win_batch_prd.bat 을 실행하면 된다.
+
+
+아니면 아래 내용을 입력한다
 set FLASK_APP=pybo/__init__.py
 set FLASK_ENV=development
 
