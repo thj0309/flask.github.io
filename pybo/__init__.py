@@ -41,7 +41,6 @@ def create_app():
 
     if(app == ''):
         app.config.from_envvar('..\config\development.py')
-        print("test")
 
 
 
@@ -50,12 +49,9 @@ def create_app():
     db.init_app(app)
     if app.config['SQLALCHEMY_DATABASE_URI'].startswith("sqlite"):
     #if SQLALCHEMY_DATABASE_URI.startswith("sqlite"):
-        print ("test")
         migrate.init_app(app, db, render_as_batch=True)
     else:
-        print ("test2")
         migrate.init_app(app, db)
-        print ("test22")
 
     from . import models
 
