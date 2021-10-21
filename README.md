@@ -10,20 +10,30 @@
 
 # 1. Flask 실행하기
 ## MacOSX
-export FLASK_APP=pybo/__init__.py <br/>
+```bash
+export FLASK_APP=pybo/__init__.py
 export FLASK_ENV=development
 
+#211015 (배포내용 추가)
+#개발서버 기준
+export APP_CONFIG_FILE=..\config\development.py
+
+#운영서버 기준
+export APP_CONFIG_FILE=..\config\production.py
+```
+
 ## Windows
-set FLASK_APP=pybo/__init__.py<br/>
+```bash
+set FLASK_APP=pybo/__init__.py
 set FLASK_ENV=development
 
-211015 (배포내용 추가)
-개발서버 기준
+#211015 (배포내용 추가)
+#개발서버 기준
 set APP_CONFIG_FILE=..\config\development.py
 
-운영서버 기준
+#운영서버 기준
 set APP_CONFIG_FILE=..\config\production.py
-
+```
 
 
 ## 위 명령어 실행 후
