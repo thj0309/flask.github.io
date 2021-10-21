@@ -17,6 +17,15 @@ export FLASK_ENV=development
 set FLASK_APP=pybo/__init__.py<br/>
 set FLASK_ENV=development
 
+211015 (배포내용 추가)
+개발서버 기준
+set APP_CONFIG_FILE=..\config\development.py
+
+운영서버 기준
+set APP_CONFIG_FILE=..\config\production.py
+
+
+
 ## 위 명령어 실행 후
 flask run
 
