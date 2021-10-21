@@ -16,6 +16,8 @@ CREATE TABLE `user` (
   `username` varchar(150) NOT NULL,
   `password` varchar(200) NOT NULL,
   `email` varchar(120) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `modify_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_user_email` (`email`),
   UNIQUE KEY `uq_user_username` (`username`)
