@@ -4,7 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flaskext.markdown import Markdown
 from sqlalchemy import MetaData
 
-import config
+#import config
+import os
 
 naming_convention = {
     "ix": 'ix_%(column_0_label)s',
@@ -19,14 +20,43 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(config)
+#app.config.from_object(config) #config 폴더 생성에 따라 주석 처리
+
+    FLASK_ENV = os.environ["FLASK_ENV"]
+    FLASK_APP = os.environ["FLASK_APP"]
+    APP_CONFIG_FILE = os.environ["APP_CONFIG_FILE"]
+    
+    print("FLASK_APP : " , FLASK_APP)
+    #print("APP_CONFIG_FILE : " , APP_CONFIG_FILE)    
+
+    #SECRET_KEY = os.getenv("SECRET_KEY")
+    #DB_USERNAME = os.environ["DB_USERNAME"]
+    #DB_PASSWORD = os.environ["DB_PASSWORD"]
+    #DB_HOST = os.environ["DB_HOST"]
+    #DATABASE_NAME = os.environ["DATABASE_NAME"]
+    #DB_URI = "mysql+pymysql://%s:%s@%s:3306/%s" % (DB_USERNAME, DB_PASSWORD, DB_HOST, DATABASE_NAME)
+    #SQLALCHEMY_DATABASE_URI = DB_URI
+    
+    app.config.from_envvar('APP_CONFIG_FILE')
+
+    if(app == ''):
+        app.config.from_envvar('..\config\development.py')
+        print("test")
+
+
+
 
     # ORM
     db.init_app(app)
     if app.config['SQLALCHEMY_DATABASE_URI'].startswith("sqlite"):
+    #if SQLALCHEMY_DATABASE_URI.startswith("sqlite"):
+        print ("test")
         migrate.init_app(app, db, render_as_batch=True)
     else:
+        print ("test2")
         migrate.init_app(app, db)
+        print ("test22")
+
     from . import models
 
     # 블루프린트
