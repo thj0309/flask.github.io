@@ -25,6 +25,8 @@ pip install email_validator
 pip install Flask-Markdown
 
 7. MySQL w/t Python
+sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
+
 pip install PyMySQL
 pip install mysqlclient
 pip install sqlalchemy
