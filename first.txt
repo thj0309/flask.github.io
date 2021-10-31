@@ -1,3 +1,6 @@
+0. conda 설치하기 (in Linux)
+curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+sh Miniconda3-latest-Linux-x86_64.sh
 
 
 1. 가상환경 생성하기
