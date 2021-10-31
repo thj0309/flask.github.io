@@ -45,7 +45,6 @@ flask run
 
 
 # 2. Docker 활용하기
---> 사전에 docker-compose에 MariaDB 정보 추가하였음. Docker만 설치되어있다면, 별도로 DB를 설치할 필요없다.<br/>
 docker-compose.yml 파일 추가<br/>
 docker compose up -d<br/>
 docker exec -it {name} bash<br/>
